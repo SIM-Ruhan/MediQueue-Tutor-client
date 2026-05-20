@@ -1,10 +1,12 @@
 import Banner from "@/components/Banner";
-import Image from "next/image";
+import Extra from "@/components/Extra";
+
 
 export default function Home() {
   return (
    <div>
   <Banner/>
+  <Extra/>
    </div>
   );
 }
