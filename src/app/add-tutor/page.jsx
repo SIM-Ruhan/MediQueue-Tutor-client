@@ -11,7 +11,6 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
-import { Router } from "next/router";
 
 import React from "react";
 import { toast } from "react-toastify";
@@ -21,6 +20,10 @@ const AddTutorPage = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget)
         const destination = Object.fromEntries(formData.entries())
+        const session = await auth.api.getSession({
+            headers: await headers(),
+          });
+          const user = session?.user;
         
 const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/destination`,
     {method: "POST",

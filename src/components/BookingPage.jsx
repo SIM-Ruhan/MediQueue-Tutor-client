@@ -42,7 +42,6 @@ const {data:tokendata} = await authClient.token();
         body: JSON.stringify(bookingData),
       }
     );
-
     const data = await res.json();
 
 

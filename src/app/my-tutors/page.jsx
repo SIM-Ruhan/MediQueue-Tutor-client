@@ -3,6 +3,7 @@ import EditModal from "@/components/EditModal";
 import React from "react";
 
 const TablePage = async () => {
+    
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/destination`, {
     cache: "no-store",
   });
