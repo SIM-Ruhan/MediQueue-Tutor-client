@@ -15,7 +15,7 @@ import { getToken } from "@/lib/getToken";
 import { authClient } from "@/lib/auth-client";
 
 const AddTutorPage = () => {
-  const { data: session } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
 
   const onSubmit = async (e) => {
@@ -168,7 +168,7 @@ const AddTutorPage = () => {
               <Label>Institution</Label>
               <Input placeholder="University of Dhaka" className="rounded-2xl" />
               <FieldError />
-            </TextField>
+          </TextField>
 
             {/* Experience */}
             <TextField name="experience" isRequired>
@@ -176,6 +176,20 @@ const AddTutorPage = () => {
               <Input placeholder="3 Years Teaching Experience" className="rounded-2xl" />
               <FieldError />
             </TextField>
+
+            {/* Logged in User Email (Read Only) */}
+            <div className="md:col-span-2">
+              <TextField name="userEmail" isRequired>
+                <Label>User Email</Label>
+                <Input
+                  type="email"
+                  value={isPending ? "Loading email..." : (session?.user?.email || "")}
+                  readOnly
+                  className="rounded-2xl bg-gray-50 text-gray-500 cursor-not-allowed"
+                />
+                <FieldError />
+              </TextField>
+            </div>
 
             {/* Description */}
             <div className="md:col-span-2">

@@ -10,10 +10,10 @@ const TablePage = async () => {
   });
 
   const user = session?.user;
+  console.log(user);
   const token = session?.session?.token;
 
   let tutors = [];
-
 
   if (user?.email) {
     const res = await fetch(
@@ -25,11 +25,11 @@ const TablePage = async () => {
         },
       }
     );
-
    
     const contentType = res.headers.get("content-type");
     if (res.ok && contentType && contentType.includes("application/json")) {
-      tutors = await res.json();
+      const allTutors = await res.json();
+      tutors = allTutors.filter((tutor) => tutor.userEmail === user?.email);
     } else {
       const errorText = await res.text();
       console.error(`Backend returned non-JSON response (${res.status}):`, errorText);
