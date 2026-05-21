@@ -8,7 +8,7 @@ const BookedSessionPage = async () => {
   });
 
   const user = session?.user;
-  const token = session?.session?.token;
+  // const token = session?.session?.token;
 
   let bookings = [];
 
@@ -17,9 +17,9 @@ const BookedSessionPage = async () => {
       `${process.env.NEXT_PUBLIC_SERVER}/booking/${user?.email}`,
       {
         cache: "no-store",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        // headers: {
+        //   // authorization: `Bearer ${token}`,
+        // },
       }
     );
 
