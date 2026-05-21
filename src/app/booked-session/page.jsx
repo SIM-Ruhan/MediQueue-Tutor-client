@@ -9,7 +9,8 @@ const BookedSessionPage = async () => {
   });
 
   const user = session?.user;
-  const token = session?.session?.token;
+   const token = session?.session?.token;
+
 
   let bookings = [];
 
