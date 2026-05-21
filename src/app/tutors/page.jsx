@@ -12,13 +12,13 @@ const tutorPage = async ({ searchParams }) => {
   const endDate = sParams?.endDate || "";
 
   const fetchCourses = async (search, start, end) => {
-    // Dynamically build the query string based on active filters
+  
     const query = new URLSearchParams();
     if (search) query.append('search', search);
     if (start) query.append('startDate', start);
     if (end) query.append('endDate', end);
 
-    // Fetch data with query string applied
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/destination?${query.toString()}`, {
       cache: 'no-store' 
     });

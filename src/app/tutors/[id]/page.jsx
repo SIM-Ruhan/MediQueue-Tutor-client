@@ -66,49 +66,49 @@ const tutor = await res.json();
               </p>
 
               <p>
-                💼 Experience:{" "}
+                 Experience:{" "}
                 <span className="font-semibold">
                   {tutor.experience}
                 </span>
               </p>
 
               <p>
-                📍 Location:{" "}
+                 Location:{" "}
                 <span className="font-semibold">
                   {tutor.location}
                 </span>
               </p>
 
               <p>
-                💰 Hourly Fee:{" "}
+                 Hourly Fee:{" "}
                 <span className="font-semibold">
                   ৳{tutor.hourlyFee}
                 </span>
               </p>
 
               <p>
-                📅 Days:{" "}
+                 Days:{" "}
                 <span className="font-semibold">
                   {tutor.availableDays}
                 </span>
               </p>
 
               <p>
-                🕒 Time:{" "}
+                 Time:{" "}
                 <span className="font-semibold">
                   {tutor.availableTime}
                 </span>
               </p>
 
               <p>
-                🎯 Available Slots:{" "}
+                Available Slots:{" "}
                 <span className="font-semibold">
                   {tutor.totalSlot}
                 </span>
               </p>
 
               <p>
-                🚀 Session Starts:{" "}
+                 Session Starts:{" "}
                 <span className="font-semibold">
                   {tutor.sessionStartDate}
                 </span>
