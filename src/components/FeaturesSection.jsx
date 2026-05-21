@@ -25,75 +25,84 @@ const FeaturesSection = () => {
   if (loading) {
     return (
       <div className="text-center py-20">
-        <span className="loading loading-spinner loading-lg text-primary"></span>
+        <span className="loading loading-spinner loading-lg text-[#009688]"></span>
       </div>
     );
   }
-const featured = tutors.slice(0, 6);
+
+  const featured = tutors.slice(0, 6);
+
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold mb-3">Available Tutors</h2>
-        <p className="text-gray-500 max-w-md mx-auto">
-          Learn from experienced tutors across different subjects. Book a session today to upgrade your skills.
-        </p>
-      </div>
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-6xl px-4">
+        
+        {/* Heading */}
+        <div className="mb-12 text-center">
+          <h2 className="text-4xl font-extrabold font-serif text-black tracking-wide mb-3">
+            Available Tutors
+          </h2>
+          <p className="text-gray-500 max-w-md mx-auto text-sm">
+            Learn from experienced tutors across different subjects. Book a session today to upgrade your skills.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featured.map((tutor) => (
-          <div 
-            key={tutor._id} 
-            className="card bg-base-100 shadow-xl border transition-all duration-300 hover:shadow-2xl"
-          >
-            <figure className="h-64 overflow-hidden relative">
-              <Image
-                src={tutor?.photoUrl}
-                alt={tutor?.tutorName}
-                width={500}
-                height={500}
-                className="w-full h-full object-cover"
-                unoptimized
-              />
-            </figure>
-
-            <div className="card-body p-6">
-              <h2 className="card-title text-2xl font-bold mb-2">{tutor?.tutorName}</h2>
-
-              <div className="space-y-1 text-gray-600 mb-4">
-                <p>
-                  <span className="font-semibold text-gray-800">Subject:</span> {tutor?.subject}
-                </p>
-                <p>
-                  <span className="font-semibold text-gray-800">Experience:</span> {tutor?.experience} years
-                </p>
-                <p>
-                  <span className="font-semibold text-gray-800">TeachingMode:</span> {tutor?.teachingMode}
-                </p>
+        {/* Tutor Cards Grid */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {featured.map((tutor) => (
+            <div
+              key={tutor._id}
+              className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] flex flex-col justify-between"
+            >
+              {/* Image Container */}
+              <div className="relative h-56 w-full">
+                <Image
+                  src={tutor?.photoUrl}
+                  alt={tutor?.tutorName}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
               </div>
 
-              <div className="flex justify-between items-center mt-auto pt-4 border-t">
-                <span className="text-sm text-gray-500">Hourly Rate</span>
-                <p className="text-2xl font-bold text-primary text-right">${tutor?.hourlyFee}/<span className="text-gray-600 text-sm">hour</span></p>
-              </div>
+              {/* Content Box */}
+              <div className="p-6 flex flex-col flex-1">
+                <h2 className="text-xl font-bold text-gray-900 mb-1">
+                  {tutor?.tutorName}
+                </h2>
+                <p className="text-sm text-gray-500 mb-4">
+                  {tutor?.subject}
+                </p>
 
-              <div className="card-actions mt-4">
-                {/* Dynamically redirects the user to the tutor details page */}
-                <Link 
-                  href={`/tutors/${tutor._id}`} 
-                  className="btn btn-primary w-full text-white tracking-wide"
-                >
-                  Book Session
-                </Link>
+                <div className="space-y-2 text-sm text-gray-800 font-medium mb-6">
+                  <p>Available Days: {tutor?.availableDays || "N/A"}</p>
+                  <p>Teaching Mode: {tutor?.teachingMode || "N/A"}</p>
+                  <p>Fee: ৳{tutor?.hourlyFee}/hr</p>
+                </div>
+
+                {/* Button Container aligned to the bottom */}
+                <div className="mt-auto">
+                  <Link
+                    href={`/tutors/${tutor._id}`}
+                    className="flex items-center justify-center w-full rounded-xl bg-[#009688] text-white py-3 font-semibold hover:bg-[#00796b] transition-colors"
+                  >
+                    Book Session
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* View All Button Wrapper */}
+        <div className="mt-12 flex justify-center">
+          <Link href="/tutors">
+            <button className="rounded-xl bg-[#009688] text-white py-3 px-10 font-semibold hover:bg-[#00796b] transition-colors tracking-wide shadow-md">
+              View All
+            </button>
+          </Link>
+        </div>
+        
       </div>
-      <Link href={"/tutors"}>
-                    <button className="btn btn-primary text-white py-3 px-12  rounded cursor-pointer hover:bg-green-700 flex w-40 mx-auto font-semibold mt-10">
-                      View All
-                    </button>
-                  </Link>
     </section>
   );
 };
