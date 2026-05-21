@@ -9,7 +9,7 @@ const BookedSessionPage = async () => {
   });
 
   const user = session?.user;
-  const token = session?.session?.token;
+  // const token = session?.session?.token;
 
 
   let bookings = [];
@@ -20,7 +20,7 @@ const BookedSessionPage = async () => {
       {
         cache: "no-store",
         headers: {
-         Authorization: `Bearer ${token}`,
+        //  Authorization: `Bearer ${token}`,
         },
       }
     );
