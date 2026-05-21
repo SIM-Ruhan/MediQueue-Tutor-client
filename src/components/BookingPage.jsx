@@ -27,7 +27,6 @@ const BookingPage = ({ tutor }) => {
       formData.entries()
     );
 
-    // Auto Generated Book Status
     bookingData.bookStatus = "Booked";
 const {data:tokendata} = await authClient.token();
 

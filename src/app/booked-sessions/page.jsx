@@ -1,16 +1,14 @@
-import { BookingDelete } from "@/components/BookingDelete";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import React from "react";
 
 const BookedSessionPage = async () => {
   const session = await auth.api.getSession({
-    headers: headers(),
+    headers: await headers(),
   });
 
   const user = session?.user;
-   const token = session?.session?.token;
-
+  const token = session?.session?.token;
 
   let bookings = [];
 
@@ -20,7 +18,7 @@ const BookedSessionPage = async () => {
       {
         cache: "no-store",
         headers: {
-         Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -273,11 +271,13 @@ const BookedSessionPage = async () => {
                         </span>
                       </td>
                       <td>
-  <BookingDelete 
-    bookingId={booking._id} 
-    disabled={booking.bookStatus === "Cancelled"} 
-  />
-</td>
+                        <button
+                          className="cancel-btn"
+                          disabled={booking.bookStatus === "Cancelled"}
+                        >
+                          Cancel
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
