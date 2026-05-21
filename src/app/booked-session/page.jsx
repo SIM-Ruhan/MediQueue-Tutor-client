@@ -276,7 +276,7 @@ const BookedSessionPage = async () => {
                           className="cancel-btn"
                           disabled={booking.bookStatus === "Cancelled"}
                         >
-                          <BookingDelete />
+                          <BookingDelete bookingId={booking._id}/>
                         </div>
                       </td>
                     </tr>

@@ -6,7 +6,7 @@ import {AlertDialog, Button} from "@heroui/react";
 export async function BookingDelete({bookingId}) {
  const {data:tokendata} = await authClient.token();
 const handleDelete=async()=>{
-const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/booking/${bookingId}`,{
+const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/booking/${user?.email}`,{
     method:"DELETE",
      headers: {
           "content-type": "application/json",
