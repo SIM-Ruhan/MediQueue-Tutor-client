@@ -6,8 +6,9 @@ const BookedSessionPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-
+console.log(session)
   const user = session?.user;
+  console.log(user)
   // const token = session?.session?.token;
 
   let bookings = [];
