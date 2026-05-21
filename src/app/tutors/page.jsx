@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense } from 'react';
 
+export const dynamic = "force-dynamic";
 const tutorPage = async ({ searchParams }) => {
   const sParams = await searchParams;
   
