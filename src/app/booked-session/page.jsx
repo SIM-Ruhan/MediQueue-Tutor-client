@@ -1,3 +1,4 @@
+import { BookingDelete } from "@/components/BookingDelete";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import React from "react";
@@ -271,12 +272,12 @@ const BookedSessionPage = async () => {
                         </span>
                       </td>
                       <td>
-                        <button
+                        <div
                           className="cancel-btn"
                           disabled={booking.bookStatus === "Cancelled"}
                         >
-                          Cancel
-                        </button>
+                          <BookingDelete />
+                        </div>
                       </td>
                     </tr>
                   ))}
