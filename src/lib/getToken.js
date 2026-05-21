@@ -1,5 +1,5 @@
-// lib/getToken.js
-import { authClient } from "@/lib/auth-client"; // adjust path if needed
+
+import { authClient } from "@/lib/auth-client";
 
 export const getToken = async () => {
   const { data } = await authClient.getSession();

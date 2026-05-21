@@ -14,10 +14,10 @@ const TablePage = async () => {
 
   let tutors = [];
 
-  // FIX 1: Prevent requesting /user/undefined if the email hasn't loaded yet
+
   if (user?.email) {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER}/destination/user/${user.email}`,
+      `${process.env.NEXT_PUBLIC_SERVER}/destination`,
       {
         cache: "no-store",
         headers: {
@@ -26,12 +26,11 @@ const TablePage = async () => {
       }
     );
 
-    // FIX 2: Safely check if response headers contain valid JSON
+   
     const contentType = res.headers.get("content-type");
     if (res.ok && contentType && contentType.includes("application/json")) {
       tutors = await res.json();
     } else {
-      // This prints the raw HTML error response directly to your terminal console for easy debugging
       const errorText = await res.text();
       console.error(`Backend returned non-JSON response (${res.status}):`, errorText);
     }

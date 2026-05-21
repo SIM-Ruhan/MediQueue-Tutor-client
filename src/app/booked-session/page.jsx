@@ -1,4 +1,3 @@
-import { BookingDelete } from "@/components/BookingDelete";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import React from "react";
@@ -8,25 +7,41 @@ const BookedSessionPage = async () => {
     headers: await headers(),
   });
 
-  const {token} = await auth.api.getToken({
-      headers: await headers()
-  })
-
   const user = session?.user;
+  const token = session?.session?.token;
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER}/booking/${user?.email}`,
-    { headers: {
-          authorization: `Bearer ${token}`
-        }}
-  );
-  const bookings = await res.json();
+  let bookings = [];
+
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER}/booking/${user?.email}`,
+      {
+        cache: "no-store",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (res.ok) {
+      const data = await res.json();
+      bookings = Array.isArray(data) ? data : [];
+      if (!Array.isArray(data)) {
+        console.error("API did not return an array:", data);
+      }
+    } else {
+      console.error("Fetch failed:", res.status, await res.text());
+    }
+  } catch (err) {
+    console.error("Fetch error:", err);
+  }
 
   return (
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #f8f6f0 0%, #fefcf8 50%, #f0f4f8 100%)",
+        background:
+          "linear-gradient(135deg, #f8f6f0 0%, #fefcf8 50%, #f0f4f8 100%)",
         fontFamily: "'DM Sans', 'Segoe UI', sans-serif",
       }}
     >
@@ -185,20 +200,24 @@ const BookedSessionPage = async () => {
         <div className="page-header">
           <div>
             <h1 className="page-title">My Booked Sessions</h1>
-            <p className="page-subtitle">All tutoring sessions you have booked.</p>
+            <p className="page-subtitle">
+              All tutoring sessions you have booked.
+            </p>
           </div>
           {bookings.length > 0 && (
-            <span className="count-badge">{bookings.length} Bookings</span>
+            <span className="count-badge">
+              {bookings.length} Booking{bookings.length !== 1 ? "s" : ""}
+            </span>
           )}
         </div>
 
         {bookings.length === 0 ? (
-          /* Empty State */
           <div className="empty-state">
             <div className="empty-icon">📚</div>
             <h2 className="empty-title">No Bookings Yet</h2>
             <p className="empty-subtitle">
-              You have not booked any tutor sessions yet. Browse tutors to get started.
+              You have not booked any tutor sessions yet. Browse tutors to get
+              started.
             </p>
           </div>
         ) : (
@@ -218,23 +237,46 @@ const BookedSessionPage = async () => {
                 <tbody>
                   {bookings.map((booking, index) => (
                     <tr key={booking._id}>
-                      <td style={{ color: "#b0aec0", fontSize: "0.78rem", width: 48 }}>
+                      <td
+                        style={{
+                          color: "#b0aec0",
+                          fontSize: "0.78rem",
+                          width: 48,
+                        }}
+                      >
                         {index + 1}
                       </td>
-                      <td><span className="tutor-name">{booking.tutorName}</span></td>
-                      <td><span className="student-name">{booking.studentName}</span></td>
-                      <td><span className="email-text">{booking.studentEmail}</span></td>
                       <td>
-                        <span className={
-                          booking.bookStatus === "Cancelled"
-                            ? "status-cancelled"
-                            : "status-booked"
-                        }>
+                        <span className="tutor-name">{booking.tutorName}</span>
+                      </td>
+                      <td>
+                        <span className="student-name">
+                          {booking.studentName}
+                        </span>
+                      </td>
+                      <td>
+                        <span className="email-text">
+                          {booking.studentEmail}
+                        </span>
+                      </td>
+                      <td>
+                        <span
+                          className={
+                            booking.bookStatus === "Cancelled"
+                              ? "status-cancelled"
+                              : "status-booked"
+                          }
+                        >
                           {booking.bookStatus}
                         </span>
                       </td>
                       <td>
-                        <div><BookingDelete bookingId={booking._id} /></div>
+                        <button
+                          className="cancel-btn"
+                          disabled={booking.bookStatus === "Cancelled"}
+                        >
+                          Cancel
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -243,7 +285,8 @@ const BookedSessionPage = async () => {
             </div>
             <div className="table-footer">
               <span className="footer-note">
-                Showing all {bookings.length} booked session{bookings.length !== 1 ? "s" : ""}
+                Showing all {bookings.length} booked session
+                {bookings.length !== 1 ? "s" : ""}
               </span>
             </div>
           </div>
