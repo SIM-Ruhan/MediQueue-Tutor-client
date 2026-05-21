@@ -49,10 +49,7 @@ const {data:tokendata} = await authClient.token();
     if (data.insertedId) {
       toast.success("Session Booked Successfully");
     }
-  };
-
-
-
+  window.location.reload(); };
 
   return (
     <Modal>

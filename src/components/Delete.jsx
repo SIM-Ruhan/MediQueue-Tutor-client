@@ -12,7 +12,7 @@ const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/destination/${tutor._
 }
 )
 const data = await res.json();
-
+window.location.reload();
 }
 
   return (
