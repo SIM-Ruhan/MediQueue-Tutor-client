@@ -22,7 +22,7 @@ const Navbar = () => {
   const privateLinks = [
     { name: "Add Tutor", href: "/add-tutor" },
     { name: "My Tutors", href: "/my-tutors" },
-    { name: "My Booked Sessions", href: "/booked-session" },
+    { name: "My Booked Sessions", href: "/booked-sessions" },
   ];
 
   const navLinks = user ? [...publicLinks, ...privateLinks] : publicLinks;
