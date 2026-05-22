@@ -11,10 +11,11 @@ import {
   Surface,
   TextField,
 } from "@heroui/react";
-
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const BookingPage = ({ tutor }) => {
+  const router = useRouter();
    const { data: session } = authClient.useSession();
    const user = session?.user;
 
@@ -28,7 +29,7 @@ const BookingPage = ({ tutor }) => {
     );
 
     bookingData.bookStatus = "Booked";
-const {data:tokendata} = await authClient.token();
+ const {data:tokendata} = await authClient.token();
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER}/booking`,
@@ -36,7 +37,7 @@ const {data:tokendata} = await authClient.token();
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${tokendata?.token}`
+           authorization: `Bearer ${tokendata?.token}`
         },
         body: JSON.stringify(bookingData),
       }
@@ -48,7 +49,8 @@ const {data:tokendata} = await authClient.token();
     if (data.insertedId) {
       toast.success("Session Booked Successfully");
     }
-  window.location.reload(); };
+  router.push("/booked-sessions")
+  };
 
   return (
     <Modal>

@@ -13,6 +13,7 @@ import {
   HiOutlineMail,
   HiOutlinePhone,
 } from "react-icons/hi";
+import { PiStudentDuotone } from "react-icons/pi";
 
 const Footer = () => {
   return (
@@ -26,7 +27,7 @@ const Footer = () => {
               className="mb-5 inline-flex items-center gap-2 text-3xl font-extrabold"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white shadow-lg">
-                M
+                <PiStudentDuotone />
               </div>
 
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -121,7 +122,7 @@ const Footer = () => {
 
               <li>
                 <Link
-                  href="/support"
+                  href="/"
                   className="transition hover:text-primary"
                 >
                   Learning Support
@@ -146,7 +147,7 @@ const Footer = () => {
 
               <li>
                 <Link
-                  href="/about"
+                  href="/"
                   className="transition hover:text-primary"
                 >
                   About Us
@@ -164,7 +165,7 @@ const Footer = () => {
 
               <li>
                 <Link
-                  href="/faq"
+                  href="/"
                   className="transition hover:text-primary"
                 >
                   FAQ
@@ -173,7 +174,7 @@ const Footer = () => {
 
               <li>
                 <Link
-                  href="/privacy-policy"
+                  href="/"
                   className="transition hover:text-primary"
                 >
                   Privacy Policy
@@ -223,24 +224,7 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* NEWSLETTER */}
-            <div className="mt-6">
-              <h4 className="mb-3 font-semibold">
-                Subscribe Newsletter
-              </h4>
-
-              <div className="flex items-center overflow-hidden rounded-xl border border-white/10 bg-white/5">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full bg-transparent px-4 py-3 text-sm outline-none"
-                />
-
-                <button className="bg-primary px-5 py-3 text-sm font-medium text-white transition hover:bg-primary-focus">
-                  Join
-                </button>
-              </div>
-            </div>
+            
           </div>
         </div>
 
@@ -253,21 +237,21 @@ const Footer = () => {
 
           <div className="flex items-center gap-5">
             <Link
-              href="/terms"
+              href="/"
               className="transition hover:text-primary"
             >
               Terms
             </Link>
 
             <Link
-              href="/privacy-policy"
+              href="/"
               className="transition hover:text-primary"
             >
               Privacy
             </Link>
 
             <Link
-              href="/cookies"
+              href="/"
               className="transition hover:text-primary"
             >
               Cookies

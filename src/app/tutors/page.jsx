@@ -6,7 +6,6 @@ import React, { Suspense } from 'react';
 const tutorPage = async ({ searchParams }) => {
   const sParams = await searchParams;
   
-  // Extract parameters sent by the TutorFilters component
   const searchTerm = sParams?.searchTerm || "";
   const startDate = sParams?.startDate || "";
   const endDate = sParams?.endDate || "";
@@ -29,7 +28,7 @@ const tutorPage = async ({ searchParams }) => {
   const courses = await fetchCourses(searchTerm, startDate, endDate);
 
   return (
-    <div className="min-h-screen bg-white py-12">
+    <div className="min-h-screen py-12">
       <div className="mx-auto max-w-6xl px-4">
         
         {/* Heading */}

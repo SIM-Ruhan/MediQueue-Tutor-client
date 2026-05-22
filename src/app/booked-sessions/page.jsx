@@ -1,3 +1,4 @@
+import { BookingDelete } from "@/components/BookingDelete";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import React from "react";
@@ -9,7 +10,7 @@ const BookedSessionPage = async () => {
 console.log(session)
   const user = session?.user;
   console.log(user)
-  // const token = session?.session?.token;
+   const token = session?.session?.token;
 
   let bookings = [];
 
@@ -18,9 +19,9 @@ console.log(session)
       `${process.env.NEXT_PUBLIC_SERVER}/booking/${user?.email}`,
       {
         cache: "no-store",
-        // headers: {
-        //   // authorization: `Bearer ${token}`,
-        // },
+        headers: {
+           authorization: `Bearer ${token}`,
+        },
       }
     );
 
@@ -41,8 +42,6 @@ console.log(session)
     <div
       style={{
         minHeight: "100vh",
-        background:
-          "linear-gradient(135deg, #f8f6f0 0%, #fefcf8 50%, #f0f4f8 100%)",
         fontFamily: "'DM Sans', 'Segoe UI', sans-serif",
       }}
     >
@@ -67,7 +66,6 @@ console.log(session)
           font-family: 'Playfair Display', Georgia, serif;
           font-size: 2.4rem;
           font-weight: 700;
-          color: #1a1a2e;
           letter-spacing: -0.5px;
           margin: 0 0 6px;
         }
@@ -272,12 +270,13 @@ console.log(session)
                         </span>
                       </td>
                       <td>
-                        <button
-                          className="cancel-btn"
+                        <div
+                         
                           disabled={booking.bookStatus === "Cancelled"}
                         >
-                          Cancel
-                        </button>
+                         
+                          <BookingDelete bookingId = {booking._id}/>
+                        </div>
                       </td>
                     </tr>
                   ))}

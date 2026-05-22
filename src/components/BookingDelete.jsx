@@ -5,7 +5,7 @@ import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export function BookingDelete({ bookingId, disabled }) {
+export function BookingDelete({ bookingId }) {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -13,14 +13,14 @@ export function BookingDelete({ bookingId, disabled }) {
     try {
       setIsDeleting(true);
       // 1. Fetch token inside the handler, right before the request
-      const { data: tokendata } = await authClient.token();
+       const { data: tokendata } = await authClient.token();
 
       // 2. Fix the URL to pass bookingId, matching the backend route
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/booking/${bookingId}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${tokendata?.token}`
+           authorization: `Bearer ${tokendata?.token}`
         },
       });
 
@@ -42,7 +42,7 @@ export function BookingDelete({ bookingId, disabled }) {
       <Button 
         variant="danger" 
         className="cancel-btn" 
-        disabled={disabled || isDeleting}
+        disabled={isDeleting}
       >
         {isDeleting ? "Canceling..." : "Cancel"}
       </Button>

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
 
+
 const noto = Noto_Sans({
   subsets: ["latin"],
 });
@@ -22,8 +23,10 @@ export default function RootLayout({ children }) {
       className={`${noto.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+       
        <Navbar/>
         {children}
+      
         <ToastContainer/>
         <Footer/>
         </body>

@@ -11,7 +11,7 @@ import {
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
-import { getToken } from "@/lib/getToken";
+ import { getToken } from "@/lib/getToken";
 import { authClient } from "@/lib/auth-client";
 
 const AddTutorPage = () => {
@@ -28,13 +28,13 @@ const AddTutorPage = () => {
     if (destination.totalSlot) destination.totalSlot = Number(destination.totalSlot);
 
     try {
-      const token = await getToken();
+       const token = await getToken();
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/destination`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${token}`,
+           authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(destination),
       });
@@ -53,12 +53,12 @@ const AddTutorPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 py-10">
-      <div className="mx-auto max-w-5xl rounded-3xl border border-base-300 bg-base-100 p-6 shadow-xl md:p-10">
+    <div className="min-h-screen py-10">
+      <div className="mx-auto bg-white max-w-5xl rounded-3xl border border-base-300 p-6 shadow-xl md:p-10">
         
         {/* Heading */}
         <div className="mb-10">
-          <h1 className="text-3xl font-extrabold md:text-4xl">Add New Tutor</h1>
+          <h1 className="text-3xl font-extrabold md:text-4xl text-blue-600">Add New Tutor</h1>
           <p className="mt-3 text-sm text-gray-500 md:text-base">
             Fill up the tutor information to create a new tutoring session.
           </p>

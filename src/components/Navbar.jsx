@@ -4,7 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { PiStudentDuotone } from "react-icons/pi";
 import { useState } from "react";
-import { Menu, X, ChevronDown, LogOut, User, BookOpen } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  LogOut,
+  User,
+  BookOpen,
+  Sun,
+  Moon,
+} from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
@@ -35,7 +44,6 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-base-300 bg-base-100/90 backdrop-blur">
       <div className="navbar mx-auto max-w-7xl px-4 lg:px-8">
-
         {/* LEFT — Logo */}
         <div className="navbar-start">
           <button
@@ -45,10 +53,14 @@ const Navbar = () => {
             {mobileMenu ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          <Link href="/" className="flex items-center gap-2 text-2xl font-extrabold">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-2xl font-extrabold"
+          >
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-content shadow-md">
               <PiStudentDuotone />
             </div>
+
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               MediQueue
             </span>
@@ -71,8 +83,23 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* RIGHT — Auth */}
+        {/* RIGHT — Theme + Auth */}
         <div className="navbar-end gap-3">
+          {/* Theme Toggle */}
+          <label className="swap swap-rotate">
+            <input
+              type="checkbox"
+              className="theme-controller"
+              value="dark"
+            />
+
+            {/* Sun icon */}
+            <Sun className="swap-off h-6 w-6 cursor-pointer" />
+
+            {/* Moon icon */}
+            <Moon className="swap-on h-6 w-6 cursor-pointer" />
+          </label>
+
           {user ? (
             /* LOGGED IN — Profile Dropdown */
             <div className="relative">
@@ -89,9 +116,12 @@ const Navbar = () => {
                   className="h-10 w-10 rounded-full object-cover"
                   unoptimized
                 />
+
                 <ChevronDown
                   size={18}
-                  className={`transition-transform duration-300 ${profileMenu ? "rotate-180" : ""}`}
+                  className={`transition-transform duration-300 ${
+                    profileMenu ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 
@@ -109,9 +139,12 @@ const Navbar = () => {
                         className="rounded-full"
                         unoptimized
                       />
+
                       <div>
                         <h3 className="font-bold">{user.name}</h3>
-                        <p className="text-xs text-gray-500">{user.email}</p>
+                        <p className="text-xs text-gray-500">
+                          {user.email}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -119,7 +152,7 @@ const Navbar = () => {
                   {/* Dropdown Links */}
                   <div className="p-2">
                     <Link
-                      href="/profile"
+                      href="/my-profile"
                       onClick={() => setProfileMenu(false)}
                       className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-base-200"
                     >
@@ -153,6 +186,7 @@ const Navbar = () => {
               <Link href="/login" className="btn btn-ghost rounded-xl">
                 Login
               </Link>
+
               <Link href="/register" className="btn btn-primary rounded-xl">
                 Register
               </Link>
@@ -187,6 +221,7 @@ const Navbar = () => {
                 >
                   Login
                 </Link>
+
                 <Link
                   href="/register"
                   className="btn btn-primary rounded-xl"

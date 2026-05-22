@@ -40,7 +40,6 @@ const TablePage = async () => {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #f8f6f0 0%, #fefcf8 50%, #f0f4f8 100%)",
         fontFamily: "'DM Sans', 'Segoe UI', sans-serif",
       }}
     >
@@ -48,7 +47,7 @@ const TablePage = async () => {
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@600;700&display=swap');
         .page-wrapper { width: 90%; max-width: 1400px; margin: 0 auto; padding: 48px 0 80px; }
         .page-header { margin-bottom: 36px; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-        .page-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem; font-weight: 700; color: #1a1a2e; letter-spacing: -0.5px; line-height: 1.1; margin: 0 0 6px; }
+        .page-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; margin: 0 0 6px; }
         .page-subtitle { color: #7a7a8c; font-size: 0.95rem; font-weight: 400; margin: 0; letter-spacing: 0.01em; }
         .tutor-count-badge { background: #1a1a2e; color: #f5e6c8; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; white-space: nowrap; }
         .table-card { background: #ffffff; border-radius: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 32px rgba(26,26,46,0.08), 0 0 0 1px rgba(26,26,46,0.06); overflow: hidden; }
@@ -153,6 +152,7 @@ const TablePage = async () => {
                           <div className="actions-cell">
                             <div><EditModal tutor={tutor} /></div>
                             <div><Delete tutor={tutor} /></div>
+       
                           </div>
                         </td>
                       </tr>

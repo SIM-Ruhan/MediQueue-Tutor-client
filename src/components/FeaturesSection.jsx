@@ -30,10 +30,10 @@ const FeaturesSection = () => {
     );
   }
 
-  const featured = tutors.slice(0, 6);
+   const featured = tutors.slice(0, 6);
 
   return (
-    <section className="bg-white py-16">
+    <section className="py-16">
       <div className="mx-auto max-w-6xl px-4">
         
         {/* Heading */}

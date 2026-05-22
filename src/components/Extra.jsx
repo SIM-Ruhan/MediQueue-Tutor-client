@@ -52,7 +52,7 @@ const howItWorksData = [
 
 export default function WhyChooseSection() {
   return (
-    <section className="w-full bg-[#f5f5f5] py-16 md:py-24">
+    <section className="w-full py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* WHY CHOOSE SECTION */}
         <div>
@@ -88,7 +88,7 @@ export default function WhyChooseSection() {
             {howItWorksData.map((item, index) => (
               <div
                 key={index}
-                className="bg-white border border-gray-200 rounded-[28px] shadow-sm px-8 py-12 text-center hover:shadow-md transition-all duration-300"
+                className="border border-gray-200 rounded-[28px] shadow-sm px-8 py-12 text-center hover:shadow-md transition-all duration-300"
               >
                 <h3 className="text-5xl font-bold text-blue-600">
                   {item.number}

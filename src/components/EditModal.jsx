@@ -10,10 +10,12 @@ import {
   TextArea,
   TextField,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
+
 import { toast } from "react-toastify";
 
 const EditModal = ({ tutor }) => {
-  
+  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,6 +39,7 @@ const EditModal = ({ tutor }) => {
       const data = await res.json();
 
         toast.success("Session Updated Successfully!");
+      router.refresh();
       
     } catch (error) {
       console.error(error);
